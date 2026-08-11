@@ -3,209 +3,1588 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Westport Girls Flag Football | Westport PAL</title>
-<meta name="description" content="Girls flag football for grades 1-8 in Westport, CT. NFL-affiliated, professional coaching, no experience needed. Register today.">
+<title>WGF — Westport Girls Flag Football</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #1f3864;
-    --gold: #f2a900;
-    --pink: #d6336c;
-    --light: #f7f8fb;
-    --text: #24292f;
+    --blue: #2D6BE4;
+    --navy: #1B2E5E;
+    --gold: #E8A63C;
+    --gold-dark: #C9871F;
+    --light: #FFFFFF;
+    --light-2: #F2F5FB;
+    --light-3: #E4EAF5;
+    --light-4: #D6DFEF;
+    --border: rgba(27,46,94,0.13);
+    --text: #0F1C3F;
+    --muted: rgba(15,28,63,0.50);
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
   }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: var(--text); line-height: 1.6; background: #fff; }
-  a { color: inherit; }
-  .container { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
 
-  header.site-header { background: var(--navy); color: #fff; position: sticky; top: 0; z-index: 10; }
-  .nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; max-width: 1080px; margin: 0 auto; }
-  .nav .brand { font-weight: 800; font-size: 1.1rem; letter-spacing: 0.3px; }
-  .nav ul { list-style: none; display: flex; gap: 24px; }
-  .nav a { text-decoration: none; color: #fff; font-weight: 600; font-size: 0.95rem; }
-  .nav .cta-btn { background: var(--gold); color: var(--navy); padding: 8px 16px; border-radius: 6px; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  .hero { background: linear-gradient(135deg, var(--navy), #16294a); color: #fff; padding: 80px 24px 64px; text-align: center; }
-  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); margin-bottom: 16px; }
-  .hero p { font-size: 1.15rem; max-width: 640px; margin: 0 auto 32px; color: #dce3f0; }
-  .btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
-  .btn { display: inline-block; padding: 14px 28px; border-radius: 8px; font-weight: 700; text-decoration: none; font-size: 1rem; }
-  .btn-primary { background: var(--gold); color: var(--navy); }
-  .btn-secondary { background: transparent; color: #fff; border: 2px solid #fff; }
+  html { scroll-behavior: smooth; }
 
-  section { padding: 64px 24px; }
-  section h2 { font-size: 2rem; text-align: center; margin-bottom: 12px; color: var(--navy); }
-  section .subhead { text-align: center; color: #667; max-width: 600px; margin: 0 auto 40px; }
+  body {
+    background: var(--light);
+    color: var(--text);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-  .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; max-width: 1080px; margin: 0 auto; }
-  .card { background: var(--light); border-radius: 12px; padding: 28px; text-align: center; }
-  .card .icon { font-size: 2rem; margin-bottom: 12px; }
-  .card h3 { font-size: 1.1rem; margin-bottom: 8px; color: var(--navy); }
-  .card p { font-size: 0.95rem; color: #555; }
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 4vw;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 20px rgba(27,46,94,0.08);
+  }
 
-  .dropout-section { background: var(--navy); color: #fff; }
-  .dropout-section h2, .dropout-section .subhead { color: #fff; }
-  .dropout-section .subhead { color: #cbd5e8; }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: var(--blue);
+    text-decoration: none;
+  }
 
-  .divisions-table { max-width: 720px; margin: 0 auto; border-collapse: collapse; width: 100%; }
-  .divisions-table th, .divisions-table td { padding: 14px 16px; text-align: left; border-bottom: 1px solid #e2e5eb; }
-  .divisions-table th { background: var(--navy); color: #fff; }
-  .divisions-table tr:nth-child(even) { background: var(--light); }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
 
-  .pricing-box { max-width: 480px; margin: 0 auto; background: var(--light); border-radius: 16px; padding: 40px; text-align: center; border: 2px solid var(--gold); }
-  .pricing-box .price { font-size: 3rem; font-weight: 800; color: var(--navy); }
-  .pricing-box ul { list-style: none; margin: 24px 0; text-align: left; display: inline-block; }
-  .pricing-box li { padding: 6px 0; }
-  .pricing-box li::before { content: "✓ "; color: var(--pink); font-weight: 800; }
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
 
-  .faq-item { max-width: 720px; margin: 0 auto 16px; border-bottom: 1px solid #e2e5eb; padding-bottom: 16px; }
-  .faq-item h3 { color: var(--navy); font-size: 1.05rem; margin-bottom: 6px; }
+  .nav-links a:hover { color: var(--blue); }
 
-  .cta-band { background: var(--pink); color: #fff; text-align: center; }
-  .cta-band h2 { color: #fff; }
-  .cta-band .subhead { color: #ffe0eb; }
+  .nav-cta {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--blue);
+    color: var(--light);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+  }
 
-  footer { background: #16294a; color: #b9c4dc; padding: 40px 24px; text-align: center; font-size: 0.9rem; }
-  footer a { color: var(--gold); text-decoration: none; }
+  .nav-cta:hover { background: #fff; transform: translateY(-1px); }
 
-  @media (max-width: 640px) {
-    .nav ul { display: none; }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 101;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--navy);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 4vw 8vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(15,28,63,0.08) 0%, rgba(15,28,63,0.45) 60%, var(--light) 100%),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 79px,
+        rgba(45,107,228,0.04) 80px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 79px,
+        rgba(45,107,228,0.04) 80px
+      );
+    background-color: #cdd8ef;
+  }
+
+  .hero-field-lines {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+  }
+
+  .hero-field-lines::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(45,107,228,0.20), transparent);
+    transform: translateX(-50%);
+  }
+
+  .hero-field-lines::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 60% 40% at 50% 80%, rgba(45,107,228,0.07) 0%, transparent 70%);
+  }
+
+  .hero-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 40px;
+    height: 1px;
+    background: #FFFFFF;
+  }
+
+  .hero-headline {
+    font-family: var(--font-display);
+    font-size: clamp(5rem, 16vw, 14rem);
+    line-height: 0.88;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 0.2em;
+    color: #FFFFFF;
+  }
+
+  .hero-headline .line-blue { color: #7DB8FF; }
+  .hero-headline .line-outline {
+    -webkit-text-stroke: 1px rgba(240,240,240,0.25);
+    color: transparent;
+  }
+
+  .hero-sub {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.78);
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+    position: relative;
+    z-index: 2;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: var(--blue);
+    color: var(--light);
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    font-weight: 700;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+
+  .btn-primary:hover { background: #fff; transform: translateY(-2px); }
+
+  .btn-ghost {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.35);
+    color: #FFFFFF;
+    padding: 1rem 2.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+
+  .btn-ghost:hover { border-color: var(--blue); color: var(--blue); }
+
+  .hero-stats {
+    position: absolute;
+    right: 4vw;
+    bottom: 8vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 2;
+  }
+
+  .hero-stat {
+    text-align: right;
+  }
+
+  .hero-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: #FFFFFF;
+  }
+
+  .hero-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.60);
+    margin-top: 0.2rem;
+  }
+
+  /* ── HERO STATS (MOBILE, INLINE) ── */
+  .hero-stats-mobile {
+    display: none;
+    position: relative;
+    z-index: 2;
+    gap: 1.75rem;
+    margin-top: 2.5rem;
+  }
+
+  .hero-stats-mobile .hero-stat { text-align: left; }
+  .hero-stats-mobile .hero-stat-num { font-size: 2rem; }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--navy);
+    padding: 0.9rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-track {
+    display: inline-flex;
+    gap: 3rem;
+    animation: marquee 18s linear infinite;
+  }
+
+  .marquee-track span {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    color: var(--light);
+    flex-shrink: 0;
+  }
+
+  .marquee-track span.dot {
+    color: rgba(27,46,94,0.30);
+    font-size: 0.6rem;
+    align-self: center;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 7rem 4vw;
+  }
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .section-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--blue);
+  }
+
+  .section-eyebrow.gold { color: var(--gold-dark); }
+  .section-eyebrow.gold::before { background: var(--gold-dark); }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ── WHY ── */
+  #why { background: var(--light-2); }
+
+  .why-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+  }
+
+  .why-card {
+    padding: 3rem;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    position: relative;
+    transition: background 0.25s;
+  }
+
+  .why-card:hover { background: var(--light-3); }
+
+  .why-card:nth-child(even) { border-right: none; }
+  .why-card:nth-child(n+3) { border-bottom: none; }
+
+  .why-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    line-height: 1;
+    color: rgba(45,107,228,0.10);
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    transition: color 0.25s;
+  }
+
+  .why-card:hover .why-num { color: rgba(45,107,228,0.22); }
+
+  .why-icon {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .why-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.75rem;
+    color: var(--text);
+  }
+
+  .why-card p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: var(--light); }
+
+  .how-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: start;
+    margin-top: 4rem;
+  }
+
+  .how-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .how-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .how-row:last-child { border-bottom: none; }
+
+  .how-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 1.25rem 1.5rem;
+    min-width: 130px;
+    border-right: 1px solid var(--border);
+  }
+
+  .how-value {
+    padding: 1.25rem 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 400;
+  }
+
+  .how-value strong {
+    color: var(--blue);
+    font-weight: 500;
+  }
+
+  .how-cta-block {
+    margin-top: 2rem;
+  }
+
+  .how-cta-block h3 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    line-height: 1.05;
+    letter-spacing: 0.03em;
+    margin-bottom: 1rem;
+    color: var(--text);
+  }
+
+  .how-cta-block p {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    line-height: 1.7;
+  }
+
+  .price-callout {
+    background: var(--light-3);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    margin-top: 2rem;
+  }
+
+  .price-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--navy);
+    line-height: 1;
+  }
+
+  .price-label {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .price-includes {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .price-includes li {
+    font-size: 0.9rem;
+    color: var(--muted);
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 300;
+  }
+
+  .price-includes li::before {
+    content: '✓';
+    color: var(--blue);
+    font-size: 0.8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  /* ── DIVISIONS ── */
+  #divisions { background: var(--light-2); }
+
+  .divisions-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+  }
+
+  .division-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid var(--border);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.25s;
+    cursor: default;
+  }
+
+  .division-card:last-child { border-right: none; }
+
+  .division-card::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transition: transform 0.25s;
+    transform-origin: left;
+  }
+
+  .division-card:hover { background: var(--light-3); }
+  .division-card:hover::after { transform: scaleX(1); }
+
+  .division-grades {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    line-height: 1;
+    color: var(--blue);
+    margin-bottom: 0.5rem;
+  }
+
+  .division-name {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .division-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ── GALLERY ── */
+  #gallery { background: var(--light); }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 200px;
+    gap: 0.75rem;
+    margin-top: 4rem;
+  }
+
+  .gallery-tile {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: linear-gradient(135deg, var(--light-3), var(--light-4));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery-tile:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gallery-tile:nth-child(4) { grid-column: span 2; }
+
+  .gallery-tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .gallery-placeholder {
+    text-align: center;
+    padding: 1rem;
+  }
+
+  .gallery-placeholder-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+  }
+
+  .gallery-placeholder-text {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .gallery-note {
+    margin-top: 1.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  /* ── PATHWAY BANNER ── */
+  .pathway {
+    background: var(--light-3);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 5rem 4vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  .pathway-left h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+
+  .pathway-left h2 em {
+    font-style: normal;
+    color: var(--blue);
+  }
+
+  .pathway-left p {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 420px;
+  }
+
+  .pathway-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+
+  .pathway-step {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.75rem 2rem;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+
+  .pathway-step:last-child { border-bottom: none; }
+  .pathway-step:hover { background: var(--light-4); }
+
+  .pathway-step-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--blue);
+    line-height: 1;
+    flex-shrink: 0;
+    min-width: 2.5rem;
+  }
+
+  .pathway-step-content h4 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.04em;
+    margin-bottom: 0.3rem;
+  }
+
+  .pathway-step-content p {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* ── NEWS / RESOURCES ── */
+  #news { background: var(--navy); color: var(--light); }
+
+  #news .section-eyebrow { color: var(--gold); }
+  #news .section-eyebrow::before { background: var(--gold); }
+  #news .section-title { color: var(--light); }
+
+  .news-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin: 3.5rem 0;
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .news-stat {
+    padding: 2rem 1.5rem;
+    border-right: 1px solid rgba(255,255,255,0.15);
+    text-align: center;
+  }
+
+  .news-stat:last-child { border-right: none; }
+
+  .news-stat-num {
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--gold);
+  }
+
+  .news-stat-label {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.60);
+    margin-top: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .news-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+
+  .news-card {
+    background: var(--navy);
+    padding: 2.25rem;
+    text-decoration: none;
+    color: var(--light);
+    display: block;
+    transition: background 0.25s, transform 0.15s;
+    position: relative;
+  }
+
+  .news-card:hover { background: #24397a; transform: translateY(-2px); }
+
+  .news-card-tag {
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.9rem;
+  }
+
+  .news-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.6rem;
+    line-height: 1.1;
+  }
+
+  .news-card p {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .news-card-link {
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--light);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .news-card:hover .news-card-link { color: var(--gold); }
+
+  /* ── FAQ ── */
+  #faq { background: var(--light); }
+
+  .faq-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    margin-top: 4rem;
+    border: 1px solid var(--border);
+  }
+
+  .faq-item {
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-item:nth-child(even) { border-right: none; }
+  .faq-item:nth-last-child(-n+2) { border-bottom: none; }
+
+  .faq-toggle {
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 2.5rem;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    transition: background 0.2s;
+  }
+
+  .faq-toggle:hover { background: var(--light-2); }
+
+  .faq-q {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    letter-spacing: 0.03em;
+    color: var(--text);
+  }
+
+  .faq-icon {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--blue);
+    flex-shrink: 0;
+    transition: transform 0.25s;
+  }
+
+  .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+  .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    padding: 0 2.5rem;
+  }
+
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding: 0 2.5rem 2rem;
+  }
+
+  .faq-a {
+    font-size: 0.9rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* ── REGISTER CTA ── */
+  #register {
+    background: var(--navy);
+    padding: 8rem 4vw;
+    text-align: center;
+  }
+
+  #register .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 1.5rem;
+  }
+
+  #register h2 {
+    font-family: var(--font-display);
+    font-size: clamp(4rem, 12vw, 10rem);
+    line-height: 0.9;
+    letter-spacing: 0.02em;
+    color: var(--light);
+    margin-bottom: 1.5rem;
+  }
+
+  #register p {
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.70);
+    font-weight: 300;
+    max-width: 480px;
+    margin: 0 auto 3rem;
+    line-height: 1.6;
+  }
+
+  .register-btn {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: var(--light);
+    color: var(--blue);
+    padding: 1.1rem 3rem;
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-block;
+    transition: background 0.2s, transform 0.15s;
+  }
+
+  .register-btn:hover { background: #e8edf5; transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--light-2);
+    border-top: 1px solid var(--border);
+    padding: 3rem 4vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .footer-meta {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-align: center;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 1.5rem;
+  }
+
+  .footer-links a {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--blue); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: min(78vw, 320px);
+      background: var(--light);
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 4rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      box-shadow: -8px 0 30px rgba(15,28,63,0.15);
+    }
+
+    .nav-links.open { transform: translateX(0); }
+
+    .nav-links a { font-size: 0.85rem; }
+
+    .hero-stats { display: none; }
+    .hero-stats-mobile { display: flex; }
+
+    .why-grid { grid-template-columns: 1fr; }
+    .why-card { border-right: none; }
+    .why-card:nth-child(n+3) { border-bottom: 1px solid var(--border); }
+    .why-card:last-child { border-bottom: none; }
+    .how-layout { grid-template-columns: 1fr; gap: 3rem; }
+    .divisions-grid { grid-template-columns: 1fr 1fr; }
+    .division-card:nth-child(2) { border-right: none; }
+    .division-card:nth-child(3) { border-right: 1px solid var(--border); border-top: 1px solid var(--border); }
+    .division-card:last-child { border-right: none; border-top: 1px solid var(--border); }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 160px; }
+    .gallery-tile:nth-child(1) { grid-column: span 2; grid-row: span 1; }
+    .gallery-tile:nth-child(4) { grid-column: span 1; }
+    .pathway { grid-template-columns: 1fr; gap: 3rem; }
+    .news-stats { grid-template-columns: 1fr 1fr; }
+    .news-stat { border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .news-stat:nth-child(2) { border-right: none; }
+    .news-stat:nth-last-child(-n+2) { border-bottom: none; }
+    .news-grid { grid-template-columns: 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .faq-item:last-child { border-bottom: none; }
+    footer { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    section { padding: 4.5rem 6vw; }
+    .divisions-grid { grid-template-columns: 1fr; }
+    .division-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .division-card:last-child { border-bottom: none; }
+    .gallery-grid { grid-template-columns: 1fr; grid-auto-rows: 220px; }
+    .gallery-tile:nth-child(1), .gallery-tile:nth-child(4) { grid-column: span 1; grid-row: span 1; }
+    .hero-actions { flex-direction: column; align-items: stretch; }
+    .hero-actions a { text-align: center; }
+    .hero-stats-mobile { flex-direction: column; gap: 1rem; }
+    .news-stats { grid-template-columns: 1fr; }
+    .news-stat { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .news-stat:last-child { border-bottom: none; }
+    .faq-toggle { padding: 1.75rem; }
+    .faq-answer { padding: 0 1.75rem; }
+    .faq-item.open .faq-answer { padding: 0 1.75rem 1.5rem; }
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
 </style>
 </head>
 <body>
 
-<header class="site-header">
-  <div class="nav">
-    <div class="brand">🏈 Westport Girls Flag Football</div>
-    <ul>
-      <li><a href="#about">About</a></li>
-      <li><a href="#divisions">Divisions</a></li>
-      <li><a href="#pricing">Cost</a></li>
-      <li><a href="#faq">FAQ</a></li>
-    </ul>
-    <a href="#register" class="cta-btn">Register</a>
-  </div>
-</header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">WGF</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#why">Why Flag</a></li>
+    <li><a href="#how">The Program</a></li>
+    <li><a href="#divisions">Divisions</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#news">News</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <a href="https://westportpal.sportngin.com/register/form/321349236" class="nav-cta" target="_blank" rel="noopener">Register Now</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="container">
-    <h1>Girls Flag Football, Grades 1&ndash;8</h1>
-    <p>NFL-affiliated. Girls-only. Pro and college coaching. No experience needed — just one practice a week and a team that has her back.</p>
-    <div class="btn-row">
-      <a href="#register" class="btn btn-primary">Register Now — $350</a>
-      <a href="#about" class="btn btn-secondary">Learn More</a>
+  <div class="hero-bg"></div>
+  <div class="hero-field-lines"></div>
+
+  <div class="hero-eyebrow">Westport PAL · Girls Flag Football</div>
+
+  <h1 class="hero-headline">
+    <span class="line-blue">YOUR</span><br>
+    <span>GAME.</span><br>
+    <span class="line-outline">YOUR FIELD.</span>
+  </h1>
+
+  <p class="hero-sub">The only girls-specific football program in Westport. NFL-affiliated. Parent-coached with the official NFL Flag curriculum. No experience needed — just bring your energy.</p>
+
+  <div class="hero-actions">
+    <a href="https://westportpal.sportngin.com/register/form/321349236" class="btn-primary" target="_blank" rel="noopener">Register for Fall 2026</a>
+    <a href="#why" class="btn-ghost">Learn More</a>
+  </div>
+
+  <div class="hero-stats-mobile">
+    <div class="hero-stat">
+      <div class="hero-stat-num">K–8</div>
+      <div class="hero-stat-label">Grades Eligible</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">NFL</div>
+      <div class="hero-stat-label">Affiliated Program</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">$235</div>
+      <div class="hero-stat-label">Full Season</div>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">K–8</div>
+      <div class="hero-stat-label">Grades Eligible</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">NFL</div>
+      <div class="hero-stat-label">Affiliated Program</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">$235</div>
+      <div class="hero-stat-label">Full Season</div>
     </div>
   </div>
 </section>
 
-<section id="about">
-  <h2>Why Flag Football</h2>
-  <p class="subhead">Westport PAL has built Westport girls since 1948. This is the newest way we're doing it.</p>
-  <div class="grid-3">
-    <div class="card">
-      <div class="icon">🏈</div>
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span>WESTPORT GIRLS FLAG</span><span class="dot">◆</span>
+    <span>NFL FLAG PROGRAM</span><span class="dot">◆</span>
+    <span>NFL FLAG CERTIFIED</span><span class="dot">◆</span>
+    <span>GRADES K–8</span><span class="dot">◆</span>
+    <span>FALL 2026 REGISTRATION OPEN</span><span class="dot">◆</span>
+    <span>ALL SKILL LEVELS WELCOME</span><span class="dot">◆</span>
+    <span>WESTPORT PAL · EST. 1948</span><span class="dot">◆</span>
+    <span>WESTPORT GIRLS FLAG</span><span class="dot">◆</span>
+    <span>NFL FLAG PROGRAM</span><span class="dot">◆</span>
+    <span>NFL FLAG CERTIFIED</span><span class="dot">◆</span>
+    <span>GRADES K–8</span><span class="dot">◆</span>
+    <span>FALL 2026 REGISTRATION OPEN</span><span class="dot">◆</span>
+    <span>ALL SKILL LEVELS WELCOME</span><span class="dot">◆</span>
+    <span>WESTPORT PAL · EST. 1948</span><span class="dot">◆</span>
+  </div>
+</div>
+
+<!-- WHY -->
+<section id="why">
+  <div class="section-eyebrow">Why WGF</div>
+  <h2 class="section-title reveal">Built Different.<br>For Girls Who Are.</h2>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <div class="why-icon">🏈</div>
       <h3>NFL-Affiliated</h3>
-      <p>Official NFL Flag program — real jerseys, real structure, real fun.</p>
+      <p>We run the official NFL FLAG program — that means real jerseys you keep, professional refs, and a curriculum backed by the National Football League.</p>
     </div>
-    <div class="card">
-      <div class="icon">👟</div>
-      <h3>Pro & College Coaching</h3>
-      <p>Coached by IST professionals and Sacred Heart University players.</p>
+    <div class="why-card reveal">
+      <div class="why-num">02</div>
+      <div class="why-icon">⚡</div>
+      <h3>Trained Parent Coaches</h3>
+      <p>Teams are parent-coached, guided by the official NFL Flag rules and curriculum. It's not a free-for-all — it's structured skill development from coaches invested in their own kids' team.</p>
     </div>
-    <div class="card">
-      <div class="icon">🙌</div>
-      <h3>All Skill Levels Welcome</h3>
-      <p>No tryouts, no experience required. Just show up ready to learn.</p>
+    <div class="why-card reveal">
+      <div class="why-num">03</div>
+      <div class="why-icon">🎯</div>
+      <h3>Two Practices. Real Games.</h3>
+      <p>Monday &amp; Tuesday practices, Sunday games. No 4-night-a-week commitment. Flag football complements your other sports — it doesn't compete with them.</p>
     </div>
-    <div class="card">
-      <div class="icon">⏱️</div>
-      <h3>One Practice a Week</h3>
-      <p>Mondays, 5:00&ndash;6:30pm at PJ Romano Field. Fits around everything else she does.</p>
-    </div>
-    <div class="card">
-      <div class="icon">🤝</div>
-      <h3>Girls-Only Space</h3>
-      <p>Female role models, real belonging, friends across every Westport school.</p>
-    </div>
-    <div class="card">
-      <div class="icon">🌟</div>
-      <h3>Early Adopter Advantage</h3>
-      <p>Girls joining now help shape this program's culture from the ground up.</p>
+    <div class="why-card reveal">
+      <div class="why-num">04</div>
+      <div class="why-icon">🚀</div>
+      <h3>Get In Early</h3>
+      <p>Girls flag football just became a sanctioned high school sport in CT. The pathway from PAL to varsity is opening right now. The girls who start today write the story.</p>
     </div>
   </div>
 </section>
 
-<section class="dropout-section">
-  <div class="container" style="text-align:center;">
-    <h2>Left Travel Soccer? Read This.</h2>
-    <p class="subhead" style="margin-left:auto;margin-right:auto;">You're already athletic, already team-sport tested, and probably looking for something with less time commitment and less pressure. That's exactly what this is.</p>
-    <a href="#register" class="btn btn-primary">See If It's a Fit</a>
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="section-eyebrow">The Program</div>
+  <h2 class="section-title reveal">Everything You<br>Need to Know.</h2>
+
+  <div class="how-layout">
+    <div>
+      <div class="how-details reveal">
+        <div class="how-row">
+          <div class="how-label">Season</div>
+          <div class="how-value"><strong>Fall</strong> — September through November</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Practices</div>
+          <div class="how-value"><strong>Mondays &amp; Tuesdays</strong>, 4:30–5:45pm at Greens Farms Elementary — begins 9/7 &amp; 9/8</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Games</div>
+          <div class="how-value"><strong>Sundays</strong>, 10:00–11:30am at SHS Stadium Field — begins 9/13</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Location</div>
+          <div class="how-value">Greens Farms Elementary (practices) &amp; SHS Stadium Field (games)</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Grades</div>
+          <div class="how-value"><strong>K through 8th</strong> — four age divisions</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Experience</div>
+          <div class="how-value">None required — all skill levels welcome</div>
+        </div>
+        <div class="how-row">
+          <div class="how-label">Spring Option</div>
+          <div class="how-value">Spring program available — try it before fall</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="how-cta-block reveal">
+      <h3>What does $235 actually get you?</h3>
+      <p>Everything. No hidden fees, no gear to buy separately. Show up ready to play.</p>
+
+      <div class="price-callout">
+        <div class="price-num">$235</div>
+        <div class="price-label">Full Season · All Inclusive</div>
+        <ul class="price-includes">
+          <li>Official NFL jersey (yours to keep)</li>
+          <li>Personal flag set (yours to keep)</li>
+          <li>Trained parent coaches, NFL Flag curriculum</li>
+          <li>Professional refs at every game</li>
+          <li>PAL insurance &amp; liability coverage</li>
+          <li>Full regular season + potential playoffs</li>
+        </ul>
+      </div>
+
+      <div style="margin-top: 2rem;">
+        <a href="https://westportpal.sportngin.com/register/form/321349236" class="btn-primary" target="_blank" rel="noopener">Register Now</a>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- DIVISIONS -->
 <section id="divisions">
-  <h2>Divisions & Schedule</h2>
-  <p class="subhead">Practices Mondays 5:00&ndash;6:30pm at PJ Romano Field. Games Saturdays/Sundays.</p>
-  <table class="divisions-table">
-    <tr><th>Division</th><th>Grades</th><th>Format</th></tr>
-    <tr><td>Rookie</td><td>1st &ndash; 2nd</td><td>Intro, fun-first, parent-friendly</td></tr>
-    <tr><td>Junior</td><td>3rd &ndash; 4th</td><td>Skill-building, friend groups</td></tr>
-    <tr><td>Varsity</td><td>5th &ndash; 6th</td><td>Competitive rec, soccer-dropout entry point</td></tr>
-    <tr><td>Elite</td><td>7th &ndash; 8th</td><td>Leadership, pathway to travel/tournament play</td></tr>
-  </table>
-</section>
+  <div class="section-eyebrow">Age Divisions</div>
+  <h2 class="section-title reveal">Find Your Level.<br>Own Your Field.</h2>
 
-<section id="pricing" style="background: var(--light);">
-  <h2>What It Costs</h2>
-  <p class="subhead">One price, everything included.</p>
-  <div class="pricing-box">
-    <div class="price">$350</div>
-    <ul>
-      <li>NFL jersey — hers to keep</li>
-      <li>Flag belt & flags</li>
-      <li>Professional referees</li>
-      <li>Pro & college coaching</li>
-      <li>Full season of practices & games</li>
-    </ul>
-    <a href="#register" class="btn btn-primary" style="width:100%;">Register Now</a>
+  <div class="divisions-grid">
+    <div class="division-card reveal">
+      <div class="division-grades">K–2</div>
+      <div class="division-name">Grades K–2 · Rookie Division</div>
+      <div class="division-desc">Introduction to the fundamentals. Big on fun, light on pressure. You'll learn how football works and leave every practice with a smile.</div>
+    </div>
+    <div class="division-card reveal">
+      <div class="division-grades">3–4</div>
+      <div class="division-name">Grades 3–4 · Junior Division</div>
+      <div class="division-desc">Routes, reads, and real competition. You know the basics — now build your game. Multi-sport athletes love this level for the skill transfer.</div>
+    </div>
+    <div class="division-card reveal">
+      <div class="division-grades">5–6</div>
+      <div class="division-name">Grades 5–6 · Varsity Division</div>
+      <div class="division-desc">Where athletes become football players. Deeper playbooks, higher intensity, and the foundation for competitive play. This is where it gets serious.</div>
+    </div>
+    <div class="division-card reveal">
+      <div class="division-grades">7–8</div>
+      <div class="division-name">Grades 7–8 · Elite Division</div>
+      <div class="division-desc">Competitive play with tournament pathways including NFL FLAG Regionals. Leadership roles, travel team potential, and the clearest view of what's ahead in high school.</div>
+    </div>
   </div>
 </section>
 
+<!-- GALLERY -->
+<section id="gallery">
+  <div class="section-eyebrow gold">Gallery</div>
+  <h2 class="section-title reveal">See The Season<br>In Action.</h2>
+
+  <div class="gallery-grid">
+    <div class="gallery-tile reveal">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">📸</div>
+        <div class="gallery-placeholder-text">Game Day Photo</div>
+      </div>
+    </div>
+    <div class="gallery-tile reveal">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">📸</div>
+        <div class="gallery-placeholder-text">Practice Photo</div>
+      </div>
+    </div>
+    <div class="gallery-tile reveal">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">📸</div>
+        <div class="gallery-placeholder-text">Team Photo</div>
+      </div>
+    </div>
+    <div class="gallery-tile reveal">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">📸</div>
+        <div class="gallery-placeholder-text">Action Shot</div>
+      </div>
+    </div>
+    <div class="gallery-tile reveal">
+      <div class="gallery-placeholder">
+        <div class="gallery-placeholder-icon">📸</div>
+        <div class="gallery-placeholder-text">Sideline Photo</div>
+      </div>
+    </div>
+  </div>
+  <p class="gallery-note">Real photos coming soon — send game/practice shots and we'll drop them right in.</p>
+</section>
+
+<!-- PATHWAY BANNER -->
+<div class="pathway">
+  <div class="pathway-left reveal">
+    <h2>The Sport Is<br><em>Going Somewhere.</em><br>Are You?</h2>
+    <p>Girls flag football isn't a side project anymore. It's a sanctioned high school sport in CT, NY, and PA — with NCAA emerging sport status and an Olympic pathway in development. The girls playing at Westport PAL today are ahead of the curve.</p>
+  </div>
+  <div class="pathway-right reveal">
+    <div class="pathway-step">
+      <div class="pathway-step-num">01</div>
+      <div class="pathway-step-content">
+        <h4>PAL Recreational League</h4>
+        <p>Start here. Learn the game, build your crew, find out if you love it.</p>
+      </div>
+    </div>
+    <div class="pathway-step">
+      <div class="pathway-step-num">02</div>
+      <div class="pathway-step-content">
+        <h4>Travel &amp; Tournament Play</h4>
+        <p>NFL FLAG Regionals and competitive tournaments for 7–8th graders ready to level up.</p>
+      </div>
+    </div>
+    <div class="pathway-step">
+      <div class="pathway-step-num">03</div>
+      <div class="pathway-step-content">
+        <h4>High School Varsity</h4>
+        <p>Girls flag football is now a sanctioned CT high school sport. The varsity pathway is real.</p>
+      </div>
+    </div>
+    <div class="pathway-step">
+      <div class="pathway-step-num">04</div>
+      <div class="pathway-step-content">
+        <h4>College &amp; Beyond</h4>
+        <p>NCAA emerging sport status. The girls in this program will pioneer something that lasts.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- NEWS / RESOURCES -->
+<section id="news">
+  <div class="section-eyebrow">The Bigger Picture</div>
+  <h2 class="section-title reveal">This Isn't Hype.<br>It's Happening.</h2>
+
+  <div class="news-stats reveal">
+    <div class="news-stat">
+      <div class="news-stat-num" data-count="4.1" data-suffix="M+">0</div>
+      <div class="news-stat-label">Youth Flag Players in the US</div>
+    </div>
+    <div class="news-stat">
+      <div class="news-stat-num" data-count="50" data-suffix="%+">0</div>
+      <div class="news-stat-label">Growth Since 2020</div>
+    </div>
+    <div class="news-stat">
+      <div class="news-stat-num" data-count="39" data-suffix="">0</div>
+      <div class="news-stat-label">States With HS Flag Football</div>
+    </div>
+    <div class="news-stat">
+      <div class="news-stat-num" data-count="2028" data-suffix="" data-no-anim="true">2028</div>
+      <div class="news-stat-label">Olympic Debut, Los Angeles</div>
+    </div>
+  </div>
+
+  <div class="news-grid reveal">
+    <a href="https://nflflag.com/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-tag">Official Program</div>
+      <h3>NFL FLAG — The Real Deal</h3>
+      <p>The official youth flag football program of the NFL: 830,000+ athletes and 1,800+ leagues across all 50 states. This is the curriculum WGF runs on.</p>
+      <span class="news-card-link">nflflag.com →</span>
+    </a>
+    <a href="https://www.nfl.com/news/nfl-partners-tmrw-sports-new-professional-flag-football-league" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-tag">NFL Investment</div>
+      <h3>The NFL Is All In</h3>
+      <p>NFL clubs approved up to $32M to help launch a new pro flag football league with TMRW Sports — backed by Peyton Manning, Tom Brady, Eli Manning, and more.</p>
+      <span class="news-card-link">Read on NFL.com →</span>
+    </a>
+    <a href="https://www.collegiateflagfootball.com/ncaa-division-1-womens-college-flag-football-teams/" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-tag">College Pathway</div>
+      <h3>D-I Programs Are Landing</h3>
+      <p>NCAA Division I schools are adding varsity women's flag football, with 75+ club teams expected nationwide this year. The recruiting pipeline starts younger every season.</p>
+      <span class="news-card-link">See the teams →</span>
+    </a>
+    <a href="https://www.nfhsnetwork.com/associations/ciac/flag-football" target="_blank" rel="noopener" class="news-card">
+      <div class="news-card-tag">Connecticut High School</div>
+      <h3>CT Varsity Teams Are Live</h3>
+      <p>CIAC schools including Windsor, Manchester, Southington, and Plainville now field varsity girls flag football teams, with championship games broadcast statewide.</p>
+      <span class="news-card-link">Watch on NFHS Network →</span>
+    </a>
+  </div>
+</section>
+
+<!-- FAQ -->
 <section id="faq">
-  <h2>Frequently Asked Questions</h2>
-  <div class="faq-item">
-    <h3>Does she need prior experience?</h3>
-    <p>No. All skill levels are welcome — most girls are trying flag football for the first time.</p>
-  </div>
-  <div class="faq-item">
-    <h3>What if she plays another sport too?</h3>
-    <p>Perfect — one practice a week is designed to complement other activities, not compete with them.</p>
-  </div>
-  <div class="faq-item">
-    <h3>Can I volunteer or coach?</h3>
-    <p>Always. Email <a href="mailto:westportgirlsflag@gmail.com">westportgirlsflag@gmail.com</a> and we'll follow up with options.</p>
-  </div>
-  <div class="faq-item">
-    <h3>When does the season run?</h3>
-    <p>Primarily fall (Sept&ndash;Oct/Nov), with spring programming available.</p>
+  <div class="section-eyebrow">FAQ</div>
+  <h2 class="section-title reveal">Questions?<br>We've Got Answers.</h2>
+
+  <div class="faq-grid" id="faqGrid">
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">Does my daughter need football experience?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">Zero experience needed. Flag football is designed to be learned from scratch. Many of our players have never touched a football before their first practice — and they love it.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">Can she play if she's already in another sport?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">Absolutely. That's actually our most common player profile. Two practices a week and Sunday-morning games make it easy to stack with soccer, lacrosse, field hockey, or anything else she's playing.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">Is it tackle or contact?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">No tackle. No contact. Flag football means you pull a flag from a belt to stop a play — it's fast, physical, and competitive without the collision risk. All the football, none of the hits.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">Who are the coaches?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">Teams are parent-coached, both at practice and on game day, following the official NFL Flag rules and curriculum. Volunteer coaches are always needed — reach out if you want to get involved.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">What do we do about equipment?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">Everything's included in registration. Official NFL jersey, personal flag belt and flags — both are hers to keep after the season. Just bring cleats and attitude.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">My daughter plays travel soccer through 5th grade — then what?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">Honestly? This program was built with her in mind. WGF gives athletic girls a competitive, social, skill-building outlet after the travel soccer window. Many of our best players are former soccer kids.</div></div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-toggle" type="button" aria-expanded="false">
+        <span class="faq-q">What paperwork do we need before the season starts?</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer"><div class="faq-a">As part of the Fairfield County Football League, every registered player needs a signed physician's certificate (dated within the last 12 months) and a birth certificate on file. You can register and pay first — uploads can be added afterward from your registration confirmation.</div></div>
+    </div>
   </div>
 </section>
 
-<section id="register" class="cta-band">
-  <div class="container">
-    <h2>Ready to Join the Team?</h2>
-    <p class="subhead" style="margin-left:auto;margin-right:auto;">Spots fill up fast, especially in 5th-8th grade divisions.</p>
-    <a href="mailto:westportgirlsflag@gmail.com?subject=Registration%20Interest" class="btn" style="background:#fff;color:var(--pink);">Email to Register</a>
-  </div>
+<!-- REGISTER CTA -->
+<section id="register">
+  <div class="eyebrow">Westport PAL Girls Flag Football · Fall 2026</div>
+  <h2>READY<br>TO RUN?</h2>
+  <p>Registration is open for Fall 2026. Spots fill fast — especially in the 5–8th grade divisions.</p>
+  <a href="https://westportpal.sportngin.com/register/form/321349236" class="register-btn" target="_blank" rel="noopener">Register at Westport PAL →</a>
 </section>
 
+<!-- FOOTER -->
 <footer>
-  <div class="container">
-    <p>Westport Girls Flag Football &middot; A Westport PAL Program &middot; Building Westport girls since 1948</p>
-    <p style="margin-top:8px;"><a href="mailto:westportgirlsflag@gmail.com">westportgirlsflag@gmail.com</a></p>
+  <a href="#" class="footer-logo">WGF</a>
+  <div class="footer-meta">
+    Westport Girls Flag Football · Westport PAL · Est. 1948<br>
+    Greens Farms Elementary &amp; SHS Stadium Field, Westport, CT
+  </div>
+  <div class="footer-links">
+    <a href="https://instagram.com" target="_blank">Instagram</a>
+    <a href="https://facebook.com" target="_blank">Facebook</a>
+    <a href="mailto:westportgirlsflag@gmail.com">Contact</a>
   </div>
 </footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navLinks.classList.remove('open');
+      navToggle.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const toggle = item.querySelector('.faq-toggle');
+    toggle.addEventListener('click', () => {
+      const isOpen = item.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', isOpen);
+    });
+  });
+
+  // Animated stat counters (news section)
+  const countEls = document.querySelectorAll('.news-stat-num[data-count]');
+  const animateCount = (el) => {
+    if (el.dataset.noAnim === 'true') return;
+    const target = parseFloat(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const isDecimal = el.dataset.count.includes('.');
+    const duration = 1400;
+    const start = performance.now();
+
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = target * eased;
+      el.textContent = (isDecimal ? value.toFixed(1) : Math.round(value)) + suffix;
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        countEls.forEach(animateCount);
+        statsObserver.disconnect();
+      }
+    });
+  }, { threshold: 0.4 });
+
+  const newsStatsBlock = document.querySelector('.news-stats');
+  if (newsStatsBlock) statsObserver.observe(newsStatsBlock);
+</script>
 
 </body>
 </html>
