@@ -120,6 +120,8 @@
   /* ── HERO ── */
   .hero {
     min-height: 100vh;
+    min-height: 100svh;
+    background: #0F1C3F;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -132,7 +134,7 @@
     position: absolute;
     inset: 0;
     background:
-      linear-gradient(to bottom, rgba(15,28,63,0.08) 0%, rgba(15,28,63,0.45) 60%, var(--light) 100%),
+      linear-gradient(to bottom, rgba(15,28,63,0.30) 0%, rgba(15,28,63,0.62) 55%, rgba(15,28,63,0.88) 90%, var(--light) 100%),
       repeating-linear-gradient(
         0deg,
         transparent,
@@ -143,15 +145,26 @@
         90deg,
         transparent,
         transparent 79px,
-        rgba(45,107,228,0.04) 80px
+        rgba(255,255,255,0.05) 80px
       );
-    background-color: #cdd8ef;
+    z-index: 1;
+  }
+
+  /* Background video sits behind the scrim; scrim + lines are z-index 1 */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
   .hero-field-lines {
     position: absolute;
     inset: 0;
     overflow: hidden;
+    z-index: 1;
   }
 
   .hero-field-lines::before {
@@ -633,11 +646,49 @@
   .gallery-tile:nth-child(1) { grid-column: span 2; grid-row: span 2; }
   .gallery-tile:nth-child(4) { grid-column: span 2; }
 
-  .gallery-tile img {
+  .gallery-tile img,
+  .gallery-tile video {
     width: 100%;
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .gallery-tile:hover img,
+  .gallery-tile:hover video { transform: scale(1.04); }
+
+  /* Small gold badge marks the tiles that are moving footage */
+  .gallery-tile.is-video::after {
+    content: 'CLIP';
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    z-index: 2;
+    font-family: var(--font-mono);
+    font-size: 0.52rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 0.25rem 0.5rem;
+    pointer-events: none;
+  }
+
+  .gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 2;
+    padding: 1.6rem 1rem 0.75rem;
+    font-family: var(--font-mono);
+    font-size: 0.58rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #FFFFFF;
+    background: linear-gradient(to top, rgba(15,28,63,0.82), transparent);
+    pointer-events: none;
   }
 
   .gallery-placeholder {
@@ -1088,6 +1139,16 @@
     opacity: 1;
     transform: translateY(0);
   }
+
+  /* ── MOTION-SAFE ──
+     Videos are never given the autoplay attribute; playback is started in JS
+     only when motion is allowed. A paused <video> renders its poster frame,
+     so reduced-motion users see stills rather than blank tiles. */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .gallery-tile:hover img,
+    .gallery-tile:hover video { transform: none; }
+  }
 </style>
 </head>
 <body>
@@ -1111,6 +1172,10 @@
 
 <!-- HERO -->
 <section class="hero">
+  <video class="hero-video" muted loop playsinline preload="auto"
+         poster="media/hero.jpg" aria-hidden="true" tabindex="-1">
+    <source src="media/hero.mp4" type="video/mp4">
+  </video>
   <div class="hero-bg"></div>
   <div class="hero-field-lines"></div>
 
@@ -1312,37 +1377,52 @@
 
   <div class="gallery-grid">
     <div class="gallery-tile reveal">
-      <div class="gallery-placeholder">
-        <div class="gallery-placeholder-icon">📸</div>
-        <div class="gallery-placeholder-text">Game Day Photo</div>
-      </div>
+      <img src="media/photo-jets.jpg" alt="Game day · NFL FLAG jerseys — Westport PAL girls flag football" loading="lazy">
+      <div class="gallery-caption">Game day · NFL FLAG jerseys</div>
+    </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/clip-touchdown.jpg" aria-label="In the open field">
+        <source src="media/clip-touchdown.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">In the open field</div>
+    </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/clip-play.jpg" aria-label="Snap to whistle">
+        <source src="media/clip-play.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">Snap to whistle</div>
     </div>
     <div class="gallery-tile reveal">
-      <div class="gallery-placeholder">
-        <div class="gallery-placeholder-icon">📸</div>
-        <div class="gallery-placeholder-text">Practice Photo</div>
-      </div>
+      <img src="media/photo-huddle-wide.jpg" alt="Pre-game huddle — Westport PAL girls flag football" loading="lazy">
+      <div class="gallery-caption">Pre-game huddle</div>
     </div>
-    <div class="gallery-tile reveal">
-      <div class="gallery-placeholder">
-        <div class="gallery-placeholder-icon">📸</div>
-        <div class="gallery-placeholder-text">Team Photo</div>
-      </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/clip-sky.jpg" aria-label="Fall Sundays">
+        <source src="media/clip-sky.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">Fall Sundays</div>
     </div>
-    <div class="gallery-tile reveal">
-      <div class="gallery-placeholder">
-        <div class="gallery-placeholder-icon">📸</div>
-        <div class="gallery-placeholder-text">Action Shot</div>
-      </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/clip-game.jpg" aria-label="Full speed">
+        <source src="media/clip-game.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">Full speed</div>
     </div>
-    <div class="gallery-tile reveal">
-      <div class="gallery-placeholder">
-        <div class="gallery-placeholder-icon">📸</div>
-        <div class="gallery-placeholder-text">Sideline Photo</div>
-      </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/clip-sideline.jpg" aria-label="The sideline">
+        <source src="media/clip-sideline.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">The sideline</div>
+    </div>
+    <div class="gallery-tile reveal is-video">
+      <video muted loop playsinline preload="none" poster="media/lights.jpg" aria-label="Under the lights">
+        <source src="media/lights.mp4" type="video/mp4">
+      </video>
+      <div class="gallery-caption">Under the lights</div>
     </div>
   </div>
-  <p class="gallery-note">Real photos coming soon — send game/practice shots and we'll drop them right in.</p>
+
+  <p class="gallery-note">Real footage from Westport PAL fields — practices, Sunday games, and a few under the lights.</p>
 </section>
 
 <!-- PATHWAY BANNER -->
@@ -1584,6 +1664,30 @@
 
   const newsStatsBlock = document.querySelector('.news-stats');
   if (newsStatsBlock) statsObserver.observe(newsStatsBlock);
+
+  /* ── Video playback: load and play only what's on screen ──
+     Keeps the page light on mobile data at the field. Autoplay can be
+     refused (iOS Low Power / Low Data Mode) — we swallow the rejection
+     so the poster frame simply stays put instead of showing a dead tile. */
+  const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (motionOK) {
+    const vids = document.querySelectorAll('.gallery-tile video');
+    const vidObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.dataset.loaded) { v.preload = 'auto'; v.load(); v.dataset.loaded = '1'; }
+          const p = v.play(); if (p) p.catch(() => {});
+        } else { v.pause(); }
+      });
+    }, { threshold: 0.3 });
+    vids.forEach(v => vidObserver.observe(v));
+
+    const hero = document.querySelector('.hero-video');
+    if (hero) { const hp = hero.play(); if (hp) hp.catch(() => {}); }
+  }
+
 </script>
 
 </body>
