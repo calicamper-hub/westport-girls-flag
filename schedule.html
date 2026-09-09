@@ -1,0 +1,508 @@
+<!doctype html>
+  <html lang="en">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Schedule &amp; RSVP | Westport Girls Flag Football</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+  <style>
+    :root{
+      --blue:#2D6BE4; --navy:#1B2E5E; --gold:#E8A63C; --gold-dark:#C9871F;
+      --bg:#F6F8FC; --surface:#FFFFFF; --surface-2:#EEF2FA; --border:#DCE3F0;
+      --ink:#1B2E5E; --ink-dim:#5B6785;
+    --yes:#1F7A4C; --yes-bg:#E1F3E8; --no:#C23B32; --no-bg:#FBE7E5; --maybe:#B8791E; --maybe-bg:#FBEED9;
+          --pending-bg:#EEF2FA; --shadow:0 1px 2px rgba(27,46,94,.06),0 6px 18px rgba(27,46,94,.07);
+          --font-display:'Bebas Neue', sans-serif; --font-body:'DM Sans', sans-serif; --font-mono:'Space Mono', monospace;
+}
+  @media (prefers-color-scheme: dark){
+        :root:not([data-theme="light"]){
+      --bg:#0F1626; --surface:#161F35; --surface-2:#1C2740; --border:#2B3856;
+      --ink:#E8ECF7; --ink-dim:#9CA9CB; --blue:#6E9BFF; --gold:#F0BE6C;
+              --yes:#6FCB93; --yes-bg:#173225; --no:#E38F89; --no-bg:#3A2220; --maybe:#E3C075; --maybe-bg:#382C13;
+              --pending-bg:#1C2740; --shadow:0 1px 2px rgba(0,0,0,.35),0 6px 18px rgba(0,0,0,.3);
+        }
+          }
+  :root[data-theme="dark"]{
+    --bg:#0F1626; --surface:#161F35; --surface-2:#1C2740; --border:#2B3856;
+    --ink:#E8ECF7; --ink-dim:#9CA9CB; --blue:#6E9BFF; --gold:#F0BE6C;
+          --yes:#6FCB93; --yes-bg:#173225; --no:#E38F89; --no-bg:#3A2220; --maybe:#E3C075; --maybe-bg:#382C13;
+          --pending-bg:#1C2740; --shadow:0 1px 2px rgba(0,0,0,.35),0 6px 18px rgba(0,0,0,.3);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;}
+  body{background:var(--bg);color:var(--ink);font-family:var(--font-body);-webkit-font-smoothing:antialiased;}
+  #app{max-width:640px;margin:0 auto;padding:0 16px 64px;}
+  h1,h2,h3{font-family:var(--font-display);font-weight:400;letter-spacing:.02em;text-wrap:balance;margin:0;}
+  .mono{font-family:var(--font-mono);font-variant-numeric:tabular-nums;}
+  a{color:inherit;}
+  button{font-family:inherit;cursor:pointer;}
+  .sitelink{display:block;text-align:center;padding:10px 0;font-size:13px;color:var(--ink-dim);}
+  .topbar{position:sticky;top:0;background:var(--bg);padding:20px 0 12px;border-bottom:1px solid var(--border);margin-bottom:18px;z-index:5;}
+  .topbar .eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-dark);font-weight:700;}
+  .topbar h1{font-size:36px;color:var(--navy);}
+  :root[data-theme="dark"] .topbar h1, @media (prefers-color-scheme:dark){ .topbar h1{color:var(--blue);} }
+  .topbar .sub{color:var(--ink-dim);font-size:14px;margin-top:2px;}
+  .backlink{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--blue);text-decoration:none;margin-bottom:14px;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:var(--shadow);margin-bottom:14px;}
+  .section-title{font-size:22px;margin:28px 0 10px;color:var(--ink);}
+  .section-title:first-of-type{margin-top:4px;}
+      .muted{color:var(--ink-dim);font-size:13px;}
+  .badge{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;}
+  .badge-practice{background:var(--surface-2);color:var(--ink-dim);}
+  .badge-game{background:var(--gold);color:#332506;}
+  .division-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+  .team-tile{display:block;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:14px;text-decoration:none;color:var(--ink);box-shadow:var(--shadow);transition:transform .12s ease;}
+  .team-tile:active{transform:scale(.97);}
+  .team-tile .name{font-family:var(--font-display);font-size:22px;color:var(--blue);}
+  .team-tile .div{font-size:12px;color:var(--ink-dim);}
+  .event-row{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--border);}
+  .event-row:last-child{border-bottom:none;}
+  .event-date{width:56px;flex:none;text-align:center;}
+  .event-date .dow{font-size:11px;text-transform:uppercase;color:var(--ink-dim);letter-spacing:.05em;}
+  .event-date .num{font-family:var(--font-display);font-size:26px;line-height:1;color:var(--ink);}
+  .event-main{flex:1;min-width:0;}
+  .event-title{font-weight:700;font-size:15px;}
+  .event-meta{font-size:13px;color:var(--ink-dim);margin-top:2px;}
+  .rsvp-counts{display:flex;gap:8px;margin-top:8px;font-size:12px;flex-wrap:wrap;}
+  .count-pill{padding:2px 8px;border-radius:999px;font-weight:600;}
+  .count-yes{background:var(--yes-bg);color:var(--yes);}
+  .count-no{background:var(--no-bg);color:var(--no);}
+  .count-maybe{background:var(--maybe-bg);color:var(--maybe);}
+  .expand-btn{background:none;border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:12px;font-weight:600;color:var(--ink);}
+  .roster-panel{margin-top:12px;padding-top:12px;border-top:1px dashed var(--border);}
+  .player-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;gap:10px;}
+  .player-name{font-size:14px;font-weight:600;}
+  .rsvp-btns{display:flex;gap:6px;}
+  .rsvp-btn{border:1px solid var(--border);background:var(--pending-bg);color:var(--ink-dim);border-radius:8px;padding:5px 10px;font-size:12px;font-weight:700;}
+  .rsvp-btn[data-active="1"].yes{background:var(--yes);border-color:var(--yes);color:#fff;}
+    .rsvp-btn[data-active="1"].no{background:var(--no);border-color:var(--no);color:#fff;}
+    .rsvp-btn[data-active="1"].maybe{background:var(--maybe);border-color:var(--maybe);color:#fff;}
+    .empty{padding:22px 0;color:var(--ink-dim);font-size:14px;text-align:center;}
+  .roster-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
+  .roster-chip{background:var(--surface-2);border-radius:999px;padding:5px 12px;font-size:13px;display:flex;align-items:center;gap:8px;}
+  .roster-chip button{background:none;border:none;color:var(--no);font-weight:700;padding:0;font-size:13px;}
+  form.stack{display:flex;flex-direction:column;gap:10px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  label{font-size:12px;font-weight:700;color:var(--ink-dim);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;}
+  input,select{width:100%;padding:9px 10px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--ink);font-family:inherit;font-size:14px;}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--blue);color:#fff;border:none;border-radius:9px;padding:10px 16px;font-weight:700;font-size:14px;}
+    .btn.secondary{background:transparent;color:var(--blue);border:1px solid var(--blue);}
+  .btn.danger{background:transparent;color:var(--no);border:1px solid var(--no);}
+  .btn.small{padding:6px 10px;font-size:12px;border-radius:7px;}
+  .admin-list-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:13px;}
+  .admin-list-row:last-child{border-bottom:none;}
+  .link-row{display:flex;align-items:center;gap:8px;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--border);}
+  .link-row:last-child{border-bottom:none;}
+  .link-row code{font-size:11px;background:var(--surface-2);padding:4px 6px;border-radius:6px;word-break:break-all;}
+  .toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);background:var(--navy);color:#fff;padding:9px 16px;border-radius:999px;font-size:13px;font-weight:600;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:opacity .2s ease;z-index:50;}
+    .toast.show{opacity:1;}
+  .banner{background:var(--surface-2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:13px;color:var(--ink-dim);margin-bottom:16px;}
+  .banner.error{background:var(--no-bg);color:var(--no);border-color:var(--no);}
+  .quickadd{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+  @media (prefers-reduced-motion: reduce){ *{transition:none !important;} }
+</style>
+    </head>
+    <body>
+    <div id="app"><div class="empty" style="padding-top:60px;">Loading schedule…</div></div>
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
+    <script>
+    (function(){
+      "use strict";
+
+  // ------------------------------------------------------------------
+  // 1) FIREBASE SETUP — paste your project's config below.
+  //    Firebase console → Project settings → General → "Your apps" → Web app.
+  // ------------------------------------------------------------------
+  var firebaseConfig = {
+    apiKey: "AIzaSyC8GOn-Cn9u1L9gD4L_LZb0IFG-SyphVck",
+        authDomain: "westport-girls-flag.firebaseapp.com",
+        projectId: "westport-girls-flag",
+        storageBucket: "westport-girls-flag.firebasestorage.app",
+        messagingSenderId: "998581207439",
+        appId: "1:998581207439:web:562de7e1c0bdf28f27cbfa"
+    };
+  var CONFIGURED = firebaseConfig.apiKey.indexOf("PASTE_") !== 0;
+
+  var db = null, auth = null;
+  if (CONFIGURED) {
+    firebase.initializeApp(firebaseConfig);
+    db = firebase.firestore();
+    auth = firebase.auth();
+  }
+
+  // ------------------------------------------------------------------
+  // 2) LOCAL STATE — mirrors Firestore in real time via onSnapshot.
+  // ------------------------------------------------------------------
+  var state = {
+    meta: { orgName: "Westport Girls Flag Football", season: "Fall 2026" },
+        divisions: [], teams: [], players: [], events: [], rsvps: {}
+                                         };
+  var currentUser = null;
+  var expandedEvent = {};
+  var app = document.getElementById('app');
+
+  function escapeHtml(str){
+        return String(str==null?'':str).replace(/[&<>"']/g, function(c){
+                return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+        });
+  }
+  function qs(){ return new URLSearchParams(location.search); }
+  function fmtDatePieces(iso){
+        var d = new Date(iso + 'T00:00:00');
+    return { dow: d.toLocaleDateString(undefined,{weekday:'short'}), num: d.getDate(), full: d.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'}) };
+  }
+  function fmtTime(t){
+        var parts = t.split(':'); var h = parseInt(parts[0],10); var m = parts[1];
+    var ap = h>=12 ? 'PM':'AM'; var hh = h%12; if(hh===0) hh=12;
+    return hh+':'+m+' '+ap;
+  }
+  function divisionById(id){ return state.divisions.find(function(d){return d.id===id;}); }
+  function teamById(id){ return state.teams.find(function(t){return t.id===id;}); }
+  function teamsInDivision(divId){ return state.teams.filter(function(t){return t.divisionId===divId;}); }
+  function playersOfTeam(teamId){ return state.players.filter(function(p){return p.teamId===teamId;}); }
+  function todayIso(){ return new Date().toISOString().slice(0,10); }
+
+  function eventAppliesToTeam(ev, teamId){
+        if(ev.scope==='all') return true;
+    if(ev.scope==='division'){ var team = teamById(teamId); return team && team.divisionId===ev.divisionId; }
+    if(ev.scope==='team'){ return (ev.teamIds||[]).indexOf(teamId)>-1; }
+    return false;
+  }
+  function upcomingEventsForTeam(teamId){
+        var t = todayIso();
+    return state.events.filter(function(ev){ return eventAppliesToTeam(ev, teamId) && ev.date >= t; })
+      .sort(function(a,b){ return (a.date+a.time).localeCompare(b.date+b.time); });
+  }
+  function allPracticeEvents(){
+        var t = todayIso();
+    return state.events.filter(function(ev){ return ev.type==='practice' && ev.scope==='all' && ev.date>=t; })
+      .sort(function(a,b){ return (a.date+a.time).localeCompare(b.date+b.time); });
+  }
+  function rsvpCounts(eventId, teamId){
+        var players = playersOfTeam(teamId);
+    var counts = {yes:0,no:0,maybe:0,pending:0};
+    players.forEach(function(p){
+            var v = state.rsvps[eventId] && state.rsvps[eventId][p.id];
+      if(v==='yes') counts.yes++; else if(v==='no') counts.no++; else if(v==='maybe') counts.maybe++; else counts.pending++;
+    });
+    return counts;
+}
+
+  // ------------------------------------------------------------------
+  // 3) RENDER
+  // ------------------------------------------------------------------
+  function getView(){
+        var p = qs();
+    if(p.has('admin')) return {type:'admin'};
+    if(p.has('team') && teamById(p.get('team'))) return {type:'team', teamId:p.get('team')};
+    return {type:'home'};
+}
+  function topbar(eyebrow, title, sub){
+        return '<div class="topbar"><div class="eyebrow">'+escapeHtml(eyebrow)+'</div><h1>'+escapeHtml(title)+'</h1>'+(sub?'<div class="sub">'+escapeHtml(sub)+'</div>':'')+'</div>';
+          }
+
+  function render(){
+        if(!CONFIGURED){
+      app.innerHTML = topbar('Setup needed','Connect Firebase','This page needs its Firebase config filled in before it can load or save schedule data.') +
+                '<div class="card banner error">Open this file, find <code>firebaseConfig</code> near the top of the script, and paste in your Firebase project\'s web app config. See the setup notes Claude provided.</div>';
+              return;
+        }
+    var view = getView();
+    if(view.type==='team') app.innerHTML = renderTeamView(view.teamId);
+    else if(view.type==='admin') app.innerHTML = renderAdminView();
+    else app.innerHTML = renderHomeView();
+  }
+
+  function renderHomeView(){
+        var out = topbar(state.meta.season, state.meta.orgName, 'Tap your team to see the schedule and RSVP.');
+    var practices = allPracticeEvents();
+    out += '<div class="section-title">Practice Schedule <span class="muted">&middot; all teams</span></div><div class="card">';
+    if(practices.length===0){ out += '<div class="empty">No upcoming practices scheduled yet.</div>'; }
+    else practices.slice(0,4).forEach(function(ev){
+            var dp = fmtDatePieces(ev.date);
+      out += '<div class="event-row"><div class="event-date"><div class="dow">'+dp.dow+'</div><div class="num">'+dp.num+'</div></div>'+
+                '<div class="event-main"><div class="event-title">'+escapeHtml(ev.title)+'</div><div class="event-meta mono">'+fmtTime(ev.time)+' &middot; '+escapeHtml(ev.location)+'</div></div></div>';
+    });
+    out += '</div>';
+
+    if(state.divisions.length===0){
+      out += '<div class="card"><div class="empty">No divisions yet — a coach needs to set up teams in Admin.</div></div>';
+    }
+    state.divisions.slice().sort(function(a,b){return a.order-b.order;}).forEach(function(div){
+            var teams = teamsInDivision(div.id);
+      if(teams.length===0) return;
+      out += '<div class="section-title">'+escapeHtml(div.name)+'</div><div class="division-grid">';
+      teams.forEach(function(t){
+                out += '<a class="team-tile" href="?team='+encodeURIComponent(t.id)+'"><div class="name">'+escapeHtml(t.name)+'</div><div class="div">'+playersOfTeam(t.id).length+' players</div></a>';
+      });
+      out += '</div>';
+    });
+    out += '<p style="margin-top:26px;"><a class="backlink" href="?admin=1">&#9881; Coach / Admin</a></p>';
+    out += '<a class="sitelink" href="index.html">&larr; Back to westportgirlsflag.com</a>';
+    return out;
+  }
+
+  function renderTeamView(teamId){
+        var team = teamById(teamId);
+    var div = divisionById(team.divisionId);
+    var out = '<div class="topbar"><a class="backlink" href="?">&larr; All teams</a><div class="eyebrow">'+escapeHtml(div?div.name:'')+'</div><h1>'+escapeHtml(team.name)+'</h1><div class="sub">'+escapeHtml(state.meta.orgName)+'</div></div>';
+    var evs = upcomingEventsForTeam(teamId);
+    out += '<div class="section-title">Upcoming</div>';
+    if(evs.length===0){ out += '<div class="card"><div class="empty">Nothing scheduled yet.</div></div>'; }
+    evs.forEach(function(ev){
+            var dp = fmtDatePieces(ev.date);
+      var counts = rsvpCounts(ev.id, teamId);
+      var expanded = expandedEvent[teamId]===ev.id;
+      out += '<div class="card"><div class="event-row" style="border-bottom:none;padding-top:0;">';
+      out += '<div class="event-date"><div class="dow">'+dp.dow+'</div><div class="num">'+dp.num+'</div></div><div class="event-main">';
+      out += '<span class="badge '+(ev.type==='game'?'badge-game':'badge-practice')+'">'+(ev.type==='game'?'Game':'Practice')+'</span> ';
+      out += '<div class="event-title" style="display:inline;">'+escapeHtml(ev.opponent ? ('vs '+ev.opponent) : ev.title)+'</div>';
+      out += '<div class="event-meta mono">'+fmtTime(ev.time)+' &middot; '+escapeHtml(ev.location)+'</div>';
+      out += '<div class="rsvp-counts"><span class="count-pill count-yes">'+counts.yes+' in</span><span class="count-pill count-maybe">'+counts.maybe+' maybe</span><span class="count-pill count-no">'+counts.no+' out</span></div></div>';
+      out += '<button class="expand-btn" data-action="toggle-event" data-team="'+team.id+'" data-event="'+ev.id+'">'+(expanded?'Hide':'RSVP')+'</button></div>';
+      if(expanded){
+        out += '<div class="roster-panel">';
+        playersOfTeam(teamId).forEach(function(p){
+                    var v = state.rsvps[ev.id] && state.rsvps[ev.id][p.id];
+          out += '<div class="player-row"><div class="player-name">'+escapeHtml(p.name)+'</div><div class="rsvp-btns">';
+          ['yes','maybe','no'].forEach(function(opt){
+                        var label = opt==='yes'?'In':opt==='no'?'Out':'Maybe';
+            out += '<button class="rsvp-btn '+opt+'" data-active="'+(v===opt?'1':'0')+'" data-action="set-rsvp" data-event="'+ev.id+'" data-player="'+p.id+'" data-status="'+opt+'">'+label+'</button>';
+          });
+          out += '</div></div>';
+        });
+        out += '</div>';
+      }
+      out += '</div>';
+    });
+    out += '<div class="section-title">Roster</div><div class="card"><div class="roster-list">';
+    playersOfTeam(teamId).forEach(function(p){ out += '<span class="roster-chip">'+escapeHtml(p.name)+'</span>'; });
+    out += '</div></div><a class="sitelink" href="?">&larr; All teams</a>';
+    return out;
+  }
+
+  function renderAdminView(){
+        if(!currentUser){
+      var out = topbar('Coaches & organizer', 'Coach Sign-in', 'Sign in with the account the commissioner set up for you in Firebase.');
+      out += '<div class="card"><form class="stack" data-action="admin-login">';
+      out += '<div><label>Email</label><input type="email" name="email" required></div>';
+      out += '<div><label>Password</label><input type="password" name="password" required></div>';
+      out += '<button class="btn" type="submit">Sign in</button>';
+      out += '<div class="muted" id="admin-login-error" style="color:var(--no);display:none;"></div>';
+      out += '</form></div><p><a class="backlink" href="?">&larr; Back to teams</a></p>';
+      return out;
+        }
+    var out = '<div class="topbar"><a class="backlink" href="?">&larr; All teams</a><div class="eyebrow">Signed in as '+escapeHtml(currentUser.email)+'</div><h1>Admin</h1></div>';
+
+    out += '<div class="section-title">Unified Practice Schedule</div><div class="card">';
+    out += '<p class="muted">These practices apply to every team, across every division, on the same day/time.</p>';
+    var practiceEvs = allPracticeEvents();
+    if(practiceEvs.length){
+      practiceEvs.forEach(function(ev){
+                out += '<div class="admin-list-row"><span>'+fmtDatePieces(ev.date).full+' &middot; '+fmtTime(ev.time)+' &middot; '+escapeHtml(ev.location)+'</span><button class="btn danger small" data-action="delete-event" data-event="'+ev.id+'">Remove</button></div>';
+      });
+    } else { out += '<div class="empty">No shared practices yet.</div>'; }
+    out += '<form class="stack" data-action="add-practice" style="margin-top:14px;">';
+    out += '<div class="row2"><div><label>First Date</label><input type="date" name="date" required></div><div><label>Time</label><input type="time" name="time" value="18:00" required></div></div>';
+    out += '<div><label>Location</label><input type="text" name="location" value="Greens Farms Elementary" required></div>';
+    out += '<div><label>Repeat weekly for how many weeks?</label><input type="number" name="weeks" min="1" max="20" value="1"></div>';
+    out += '<button class="btn" type="submit">Add to all teams</button></form></div>';
+
+    out += '<div class="section-title">Schedule a Game</div><div class="card"><form class="stack" data-action="add-game">';
+    out += '<div><label>Division</label><select name="divisionId">'+state.divisions.map(function(d){return '<option value="'+d.id+'">'+escapeHtml(d.name)+'</option>';}).join('')+'</select></div>';
+          out += '<div><label>Team</label><select name="teamId">'+state.teams.map(function(t){return '<option value="'+t.id+'">'+escapeHtml(t.name)+'</option>';}).join('')+'</select></div>';
+          out += '<div><label>Opponent</label><input type="text" name="opponent" placeholder="e.g. Greenwich Girls Flag" required></div>';
+    out += '<div class="row2"><div><label>Date</label><input type="date" name="date" required></div><div><label>Time</label><input type="time" name="time" value="10:00" required></div></div>';
+    out += '<div><label>Location</label><input type="text" name="location" value="Staples High School turf" required></div>';
+    out += '<button class="btn" type="submit">Add game</button></form></div>';
+
+    out += '<div class="section-title">All Upcoming Events</div><div class="card">';
+    var allUpcoming = state.events.filter(function(e){return e.date>=todayIso();}).sort(function(a,b){return (a.date+a.time).localeCompare(b.date+b.time);});
+    if(allUpcoming.length===0){ out += '<div class="empty">Nothing scheduled.</div>'; }
+    allUpcoming.forEach(function(ev){
+            var label = ev.type==='game' ? ((teamById((ev.teamIds||[])[0])||{}).name||'')+' vs '+ev.opponent : ev.title+(ev.scope==='team'? ' ('+((teamById((ev.teamIds||[])[0])||{}).name||'')+')':'');
+      out += '<div class="admin-list-row"><span>'+fmtDatePieces(ev.date).full+' &middot; '+fmtTime(ev.time)+' &mdash; '+escapeHtml(label)+'</span><button class="btn danger small" data-action="delete-event" data-event="'+ev.id+'">Remove</button></div>';
+    });
+    out += '</div>';
+
+    out += '<div class="section-title">Divisions</div><div class="card">';
+    state.divisions.forEach(function(d){
+            out += '<div class="admin-list-row"><span>'+escapeHtml(d.name)+'</span><button class="btn danger small" data-action="delete-division" data-division="'+d.id+'">Remove</button></div>';
+    });
+    out += '<div class="quickadd">';
+    out += '<button class="btn small secondary" data-action="quickadd-division" data-name="K-5">+ K-5 division</button>';
+    out += '<button class="btn small secondary" data-action="quickadd-division" data-name="6-8">+ 6-8 division</button>';
+    out += '</div>';
+    out += '<form class="stack" data-action="add-division" style="margin-top:10px;"><div><label>Custom division name</label><input type="text" name="name" placeholder="e.g. K-5" required></div><button class="btn secondary" type="submit">Add division</button></form></div>';
+
+    out += '<div class="section-title">Teams &amp; Rosters</div><div class="card">';
+    if(state.divisions.length===0){ out += '<div class="empty">Add a division first.</div>'; }
+    state.divisions.forEach(function(div){
+            out += '<div style="margin-bottom:10px;"><strong>'+escapeHtml(div.name)+'</strong>';
+      teamsInDivision(div.id).forEach(function(t){
+                out += '<div class="admin-list-row"><span>'+escapeHtml(t.name)+' &middot; '+playersOfTeam(t.id).length+' players</span><button class="btn danger small" data-action="delete-team" data-team="'+t.id+'">Remove team</button></div>';
+      });
+      out += '</div>';
+    });
+    out += '<form class="stack" data-action="add-team">';
+    out += '<div class="row2"><div><label>Division</label><select name="divisionId">'+state.divisions.map(function(d){return '<option value="'+d.id+'">'+escapeHtml(d.name)+'</option>';}).join('')+'</select></div><div><label>New team name</label><input type="text" name="name" placeholder="e.g. Comets" required></div></div>';
+          out += '<button class="btn secondary" type="submit">Add team</button></form>';
+    out += '<form class="stack" data-action="add-player" style="margin-top:14px;">';
+    out += '<div class="row2"><div><label>Team</label><select name="teamId">'+state.teams.map(function(t){return '<option value="'+t.id+'">'+escapeHtml(t.name)+'</option>';}).join('')+'</select></div><div><label>Player name</label><input type="text" name="name" placeholder="First L." required></div></div>';
+          out += '<button class="btn secondary" type="submit">Add player</button></form>';
+    if(state.players.length){
+      out += '<div class="roster-list" style="margin-top:14px;">';
+      state.players.forEach(function(p){
+                out += '<span class="roster-chip">'+escapeHtml(p.name)+' <button data-action="delete-player" data-player="'+p.id+'" title="Remove">&times;</button></span>';
+      });
+      out += '</div>';
+    }
+    out += '</div>';
+
+    out += '<div class="section-title">Share Links</div><div class="card">';
+    if(state.teams.length===0){ out += '<div class="empty">Add teams to get shareable links.</div>'; }
+    state.teams.forEach(function(t){
+            var url = location.origin + location.pathname.replace(/[^/]*$/, '') + 'schedule.html?team=' + t.id;
+      out += '<div class="link-row"><code>'+escapeHtml(url)+'</code><button class="btn small secondary" data-action="copy-link" data-url="'+escapeHtml(url)+'">Copy</button></div>';
+    });
+    out += '</div>';
+
+    out += '<div class="section-title">Account</div><div class="card"><button class="btn danger small" data-action="admin-logout">Sign out</button></div>';
+    return out;
+  }
+
+  function showToast(msg){
+        var t = document.getElementById('wgf-toast');
+    if(!t){ t = document.createElement('div'); t.id='wgf-toast'; t.className='toast'; document.body.appendChild(t); }
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(t._h); t._h = setTimeout(function(){ t.classList.remove('show'); }, 1800);
+  }
+
+  // ------------------------------------------------------------------
+  // 4) FIRESTORE READ/WRITE
+  // ------------------------------------------------------------------
+  function attachListeners(){
+        db.collection('divisions').onSnapshot(function(snap){
+      state.divisions = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+      render();
+  }, function(err){ console.error('divisions', err); });
+    db.collection('teams').onSnapshot(function(snap){
+            state.teams = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+      render();
+      }, function(err){ console.error('teams', err); });
+    db.collection('players').onSnapshot(function(snap){
+            state.players = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+      render();
+      }, function(err){ console.error('players', err); });
+    db.collection('events').onSnapshot(function(snap){
+            state.events = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+      render();
+      }, function(err){ console.error('events', err); });
+    db.collection('rsvps').onSnapshot(function(snap){
+            var next = {};
+      snap.docs.forEach(function(d){ next[d.id] = d.data(); });
+      state.rsvps = next;
+      render();
+    }, function(err){ console.error('rsvps', err); });
+    }
+
+  function handleClick(e){
+        var el = e.target.closest('[data-action]');
+    if(!el) return;
+    var action = el.dataset.action;
+    if(action==='toggle-event'){
+      var team = el.dataset.team, ev = el.dataset.event;
+      expandedEvent[team] = expandedEvent[team]===ev ? null : ev;
+      render();
+    } else if(action==='set-rsvp'){
+      var eventId = el.dataset.event, playerId = el.dataset.player, status = el.dataset.status;
+      var current = state.rsvps[eventId] && state.rsvps[eventId][playerId];
+      var next = current===status ? firebase.firestore.FieldValue.delete() : status;
+      var patch = {}; patch[playerId] = next;
+      db.collection('rsvps').doc(eventId).set(patch, {merge:true}).catch(function(err){ console.error(err); showToast('Could not save RSVP.'); });
+    } else if(action==='delete-event'){
+      db.collection('events').doc(el.dataset.event).delete().catch(function(err){ showToast('Could not remove event.'); });
+    } else if(action==='delete-team'){
+      var tId = el.dataset.team;
+      if(!confirm('Remove this team and its roster?')) return;
+      var batch = db.batch();
+      batch.delete(db.collection('teams').doc(tId));
+      playersOfTeam(tId).forEach(function(p){ batch.delete(db.collection('players').doc(p.id)); });
+      batch.commit().catch(function(err){ showToast('Could not remove team.'); });
+    } else if(action==='delete-division'){
+      var dId = el.dataset.division;
+      if(teamsInDivision(dId).length){ alert('Remove that division\'s teams first.'); return; }
+      db.collection('divisions').doc(dId).delete();
+    } else if(action==='delete-player'){
+      db.collection('players').doc(el.dataset.player).delete();
+    } else if(action==='quickadd-division'){
+      var name = el.dataset.name;
+      if(state.divisions.some(function(d){return d.name===name;})){ showToast(name+' already exists'); return; }
+      db.collection('divisions').add({ name:name, order: state.divisions.length+1 });
+    } else if(action==='copy-link'){
+      var url = el.dataset.url;
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(url).then(function(){ showToast('Link copied'); }).catch(function(){ showToast(url); });
+      } else { showToast(url); }
+    } else if(action==='admin-logout'){
+      auth.signOut();
+    }
+  }
+
+  function handleSubmit(e){
+        var form = e.target.closest('[data-action]');
+    if(!form) return;
+    e.preventDefault();
+    var action = form.dataset.action;
+    var data = Object.fromEntries(new FormData(form).entries());
+    if(action==='admin-login'){
+      var errEl = document.getElementById('admin-login-error');
+      auth.signInWithEmailAndPassword(data.email, data.password).catch(function(err){
+                if(errEl){ errEl.textContent = err.message; errEl.style.display = 'block'; }
+      });
+    } else if(action==='add-division'){
+      db.collection('divisions').add({ name:data.name, order: state.divisions.length+1 });
+      form.reset();
+    } else if(action==='add-practice'){
+      var weeks = Math.max(1, Math.min(20, parseInt(data.weeks,10)||1));
+      var base = new Date(data.date + 'T00:00:00');
+      var batch = db.batch();
+      for(var i=0;i<weeks;i++){
+        var d = new Date(base.getTime()); d.setDate(d.getDate() + i*7);
+        var ref = db.collection('events').doc();
+        batch.set(ref, { type:'practice', scope:'all', teamIds:[], divisionId:null,
+                    title:'All-Program Practice', opponent:null, date: d.toISOString().slice(0,10), time: data.time, location: data.location });
+      }
+      batch.commit().then(function(){ form.reset(); }).catch(function(){ showToast('Could not add practice.'); });
+    } else if(action==='add-game'){
+      db.collection('events').add({ type:'game', scope:'team', teamIds:[data.teamId], divisionId:data.divisionId,
+                title:'Weekend Game', opponent:data.opponent, date:data.date, time:data.time, location:data.location });
+      form.reset();
+    } else if(action==='add-team'){
+      db.collection('teams').add({ divisionId:data.divisionId, name:data.name });
+      form.reset();
+    } else if(action==='add-player'){
+      db.collection('players').add({ teamId:data.teamId, name:data.name });
+      form.reset();
+    }
+  }
+
+  app.addEventListener('click', handleClick);
+  app.addEventListener('submit', handleSubmit);
+  window.addEventListener('popstate', render);
+
+  if(CONFIGURED){
+    auth.onAuthStateChanged(function(user){ currentUser = user; render(); });
+    attachListeners();
+    } else {
+    render();
+    }
+  })();
+</script>
+  </body>
+  </html>
+  
