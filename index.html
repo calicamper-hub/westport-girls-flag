@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WGF — Westport Girls Flag Football</title>
+<meta name="description" content="Westport PAL Girls Flag Football, grades K–8. Winter Clinics with IST: Tuesdays at the Westport Fieldhouse, Jan 12 – Mar 9.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta property="og:title" content="Westport Girls Flag Football">
+<meta property="og:description" content="Westport PAL Girls Flag Football, grades K–8. Winter Clinics start Tuesday, Jan 12.">
+<meta property="og:image" content="https://westportgirlsflag.com/media/wgf-logo-profile.jpg">
+<meta property="og:url" content="https://westportgirlsflag.com/">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,300&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -59,7 +67,13 @@
     letter-spacing: 0.05em;
     color: var(--blue);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    line-height: 1;
   }
+  .nav-logo img { height: 46px; width: auto; display: block; }
+  @media (max-width: 600px) { .nav-logo img { height: 38px; } }
 
   .nav-links {
     display: flex;
@@ -1069,7 +1083,11 @@
     font-size: 1.8rem;
     color: var(--navy);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
   }
+  .footer-logo img { height: 72px; width: auto; display: block; }
 
   .footer-meta {
     font-family: var(--font-mono);
@@ -1193,7 +1211,7 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo">WGF</a>
+  <a href="#" class="nav-logo"><img src="media/wgf-logo.png" alt="Westport Girls Flag Football logo">WGF</a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#winter">Winter</a></li>
     <li><a href="#how">At a Glance</a></li>
@@ -1834,7 +1852,7 @@
 
 <!-- FOOTER -->
 <footer>
-  <a href="#" class="footer-logo">WGF</a>
+  <a href="#" class="footer-logo"><img src="media/wgf-logo.png" alt="" loading="lazy">WGF</a>
   <div class="footer-meta">
     Westport Girls Flag Football · Westport PAL · Est. 1948<br>
     Greens Farms Elementary &amp; Staples High School Turf Field, Westport, CT
